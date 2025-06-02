@@ -8,37 +8,33 @@ export default defineConfig({
     input: 'src/index.ts',
     external: [
         '@eslint/js',
-        '@types/eslint__js',
         '@types/eslint-config-prettier',
         '@typescript-eslint/utils',
         'eslint',
         'eslint-config-prettier',
-        'eslint-plugin-react',
-        'eslint-plugin-react-hooks',
-        'eslint-plugin-react-refresh',
         'eslint-plugin-simple-import-sort',
-        'typescript-eslint',
+        'typescript-eslint'
     ],
     plugins: [
         pluginTypescript({
             tsconfig: './tsconfig.json',
             outputToFilesystem: false,
-            sourceMap: !isProduction,
+            sourceMap: !isProduction
         }),
-        isProduction && pluginTerser(),
+        isProduction && pluginTerser()
     ],
     output: [
         {
             file: 'dist/bundle.mjs',
             format: 'es',
             exports: 'auto',
-            sourcemap: !isProduction,
+            sourcemap: !isProduction
         },
         {
             file: 'dist/bundle.cjs',
             format: 'cjs',
             exports: 'auto',
-            sourcemap: !isProduction,
-        },
-    ],
+            sourcemap: !isProduction
+        }
+    ]
 });
