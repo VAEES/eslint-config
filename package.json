@@ -1,0 +1,72 @@
+{
+    "name": "@b2rise/eslint-config",
+    "version": "0.0.1",
+    "author": "Otávio Baziewicz Filho",
+    "description": "A standardized set of eslint shareable configs",
+    "homepage": "https://github.com/VAEES/eslint-config#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/VAEES/eslint-config.git"
+    },
+    "bugs": {
+        "url": "https://github.com/VAEES/eslint-config/issues"
+    },
+    "keywords": [
+        "eslint",
+        "eslintconfig"
+    ],
+    "os": [
+        "win32",
+        "darwin",
+        "linux"
+    ],
+    "cpu": [
+        "x64"
+    ],
+    "main": "dist/bundle.js",
+    "module": "dist/bundle.mjs",
+    "types": "dist/src/index.d.ts",
+    "type": "module",
+    "exports": {
+        ".": {
+            "require": "./dist/bundle.js",
+            "import": "./dist/bundle.mjs",
+            "types": "./dist/src/index.d.ts"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "prepare": "yarn build",
+        "typecheck": "tsc --noEmit",
+        "lint": "eslint .",
+        "test": "echo \"Skipping...\"",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "build": "rollup -c",
+        "dev": "rollup -c -w"
+    },
+    "dependencies": {
+        "@eslint/js": "^9.9.1",
+        "@types/eslint__js": "^8.42.3",
+        "@types/eslint-config-prettier": "^6.11.3",
+        "@typescript-eslint/utils": "^8.3.0",
+        "eslint": "^9.9.1",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-react": "^7.35.0",
+        "eslint-plugin-react-hooks": "5.1.0-beta-26f2496093-20240514",
+        "eslint-plugin-react-refresh": "^0.4.11",
+        "eslint-plugin-simple-import-sort": "^12.1.1",
+        "typescript-eslint": "^8.2.0"
+    },
+    "devDependencies": {
+        "@rollup/plugin-terser": "^0.4.4",
+        "@rollup/plugin-typescript": "^11.1.6",
+        "@types/node": "^18.19.45",
+        "prettier": "^3.3.3",
+        "rollup": "^4.21.0",
+        "tslib": "^2.7.0",
+        "typescript": "^5.5.4"
+    }
+}
