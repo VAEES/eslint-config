@@ -5,18 +5,18 @@ import unusedImports from 'eslint-plugin-unused-imports';
 import globals from 'globals';
 import tsEslint from 'typescript-eslint';
 
-export default tsEslint.config(
-    {
-        ignores: ['_dev', '.rollup.cache', '.vscode', 'dist', 'node_modules'],
-    },
+export const base = tsEslint.config(
     eslint.configs.recommended,
-    tsEslint.configs.recommendedTypeChecked,
-    tsEslint.configs.stylisticTypeChecked,
+    ...tsEslint.configs.recommendedTypeChecked,
+    ...tsEslint.configs.stylisticTypeChecked,
     stylistic.configs.customize({
         semi: true,
         indent: 4,
     }),
     {
+        languageOptions: {
+            globals: globals.node,
+        },
         plugins: {
             'unused-imports': unusedImports,
             'simple-import-sort': simpleImportSort,
@@ -30,19 +30,27 @@ export default tsEslint.config(
 
             'unused-imports/no-unused-imports': 'warn',
 
-            'simple-import-sort/imports': 'warn',
+            'simple-import-sort/imports': [
+                'warn',
+                {
+                    groups: [
+                    // Side effect imports
+                        ['^\\u0000'],
+                        // External packages excluding @models/* because it's a special case
+                        ['^[^.].*(?<!@models/.*)$', '^@(?!models/)'],
+                        // @models/* imports (special case)
+                        ['^@models/'],
+                        // Relative imports, Aliases and other imports
+                        ['^@', '^'],
+                    ],
+                },
+            ],
             'simple-import-sort/exports': 'warn',
 
+            '@typescript-eslint/no-namespace': 'off',
+
             'no-console': 'error',
+            'max-lines-per-function': ['warn', 30],
             'curly': ['error', 'all'],
         },
-    },
-    {
-        languageOptions: {
-            globals: globals.node,
-            parserOptions: {
-                project: './tsconfig.eslint.json',
-            },
-        },
-    },
-);
+    });

@@ -1,7 +1,5 @@
 {
-    "prettier.enable": true,
-    "prettier.requireConfig": true,
-    "prettier.configPath": ".prettierrc.json",
+    "prettier.enable": false,
 
     "eslint.enable": true,
     "eslint.useFlatConfig": true,

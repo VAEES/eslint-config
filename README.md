@@ -5,11 +5,7 @@ This repository contains the ESLint opinionated configurations used by B2RISE pr
 ## Installation
 
 ```bash
-npm install -D @b2rise/eslint-config
-# or
 yarn add -D @b2rise/eslint-config
-# or
-pnpm add -D @b2rise/eslint-config
 ```
 
 ## Usage
@@ -22,41 +18,21 @@ First, create an `eslint.config.mjs` file in the root of your project importing 
 import { defineConfig, configs } from '@b2rise/eslint-config';
 
 export default defineConfig(
+    { ignores: [ 'dist'] },
     {
-        ignores: ['node_modules', 'dist'],
+        files: ['src/**/*.ts'],
+        extends: [configs.base],
     },
     {
-        files: ['packages/**/*.ts'],
-        extends: [
-            configs.base({
-                typeChecked: true,
-                enableHeavyRules: process.env.CI === 'true',
-                moduleResolution: 'node10',
-            }),
-        ],
+        files: ['src/**/*.test.ts'],
+        extends: [configs.tests],
     },
     {
         languageOptions: {
             parserOptions: {
-                tsconfigRootDir: __dirname,
-                project: ['./tsconfig.json', './packages/*/tsconfig.json'],
-            },
-        },
+                project: ['./tsconfig.json']
+            }
+        }
     }
-    {
-        files: ['packages/**/*.js'],
-        extends: [
-            configs.base({
-                typeChecked: false,
-                enableHeavyRules: process.env.CI === 'true',
-                moduleResolution: 'node10',
-            }),
-        ],
-    },
-    {
-        files: ['packages/web'],
-        extends: [configs.react()],
-    },
-    ...configs.disableFormatting
 );
 ```

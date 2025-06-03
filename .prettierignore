@@ -1,5 +1,0 @@
-.rollup.cache
-dist
-node_modules
-CHANGELOG.md
-yarn.lock

@@ -1,0 +1,56 @@
+name: RELEASE
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release Please
+        uses: googleapis/release-please-action@v4
+        id: release-please
+        with:
+          token: ${{ secrets.GH_PAT }}
+          release-type: node
+
+      - name: Checkout
+        if: ${{ steps.release-please.outputs.release_created }}
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        if: ${{ steps.release-please.outputs.release_created }}
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: 'yarn'
+          cache-dependency-path: yarn.lock
+
+      - name: Build and pack
+        if: ${{ steps.release-please.outputs.release_created }}
+        run: |
+          yarn
+          yarn build
+          yarn pack
+        env:
+          CI: true
+
+      - name: Publish to npm
+        if: ${{ steps.release-please.outputs.release_created }}
+        run: |
+          yarn publish dist/*.tgz --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Upload release
+        run: |
+          gh release upload ${{ steps.release-please.outputs.tag_name}} *.tgz
+        if: ${{ steps.release-please.outputs.release_created }}
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}

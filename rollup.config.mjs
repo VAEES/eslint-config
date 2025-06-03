@@ -13,28 +13,28 @@ export default defineConfig({
         'eslint',
         'eslint-config-prettier',
         'eslint-plugin-simple-import-sort',
-        'typescript-eslint'
+        'typescript-eslint',
     ],
     plugins: [
         pluginTypescript({
             tsconfig: './tsconfig.json',
             outputToFilesystem: false,
-            sourceMap: !isProduction
+            sourceMap: !isProduction,
         }),
-        isProduction && pluginTerser()
+        isProduction && pluginTerser(),
     ],
     output: [
         {
             file: 'dist/bundle.mjs',
             format: 'es',
             exports: 'auto',
-            sourcemap: !isProduction
+            sourcemap: !isProduction,
         },
         {
             file: 'dist/bundle.cjs',
             format: 'cjs',
             exports: 'auto',
-            sourcemap: !isProduction
-        }
-    ]
+            sourcemap: !isProduction,
+        },
+    ],
 });
