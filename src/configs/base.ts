@@ -3,12 +3,13 @@ import stylistic from '@stylistic/eslint-plugin';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import unusedImports from 'eslint-plugin-unused-imports';
 import globals from 'globals';
+import { config, ConfigArray } from 'typescript-eslint';
 import tsEslint from 'typescript-eslint';
 
-export const base = tsEslint.config(
+export const base: ConfigArray = config(
     eslint.configs.recommended,
-    ...tsEslint.configs.recommendedTypeChecked,
-    ...tsEslint.configs.stylisticTypeChecked,
+    tsEslint.configs.recommendedTypeChecked,
+    tsEslint.configs.stylisticTypeChecked,
     stylistic.configs.customize({
         semi: true,
         indent: 4,
@@ -34,14 +35,16 @@ export const base = tsEslint.config(
                 'warn',
                 {
                     groups: [
-                    // Side effect imports
+                        // 1. Side effect imports
                         ['^\\u0000'],
-                        // External packages excluding @models/* because it's a special case
-                        ['^[^.].*(?<!@models/.*)$', '^@(?!models/)'],
-                        // @models/* imports (special case)
+                        // 2. External libraries (regular packages and scoped packages, but exclude our aliases)
+                        ['^[^@.]', '^@(?!models/|tests/|/)'],
+                        // 3. @models/* aliases
                         ['^@models/'],
-                        // Relative imports, Aliases and other imports
-                        ['^@', '^'],
+                        // 4. @tests/* aliases
+                        ['^@tests/'],
+                        // 5. @/ aliases
+                        ['^@/'],
                     ],
                 },
             ],

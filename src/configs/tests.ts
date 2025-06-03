@@ -1,8 +1,8 @@
-import tsEslint from 'typescript-eslint';
+import { config, ConfigArray } from 'typescript-eslint';
 
 import { base } from './base';
 
-export const tests = tsEslint.config(base, {
+export const tests: ConfigArray = config(base, {
     rules: {
         'max-lines-per-function': 'off',
         'no-console': 'off',

@@ -2,17 +2,17 @@ import pluginTerser from '@rollup/plugin-terser';
 import pluginTypescript from '@rollup/plugin-typescript';
 import { defineConfig } from 'rollup';
 
-const isProduction = !process.env.ROLLUP_WATCH;
+const isProduction = process.env.ROLLUP_WATCH !== 'true';
 
 export default defineConfig({
     input: 'src/index.ts',
     external: [
         '@eslint/js',
-        '@types/eslint-config-prettier',
-        '@typescript-eslint/utils',
+        '@stylistic/eslint-plugin',
         'eslint',
-        'eslint-config-prettier',
         'eslint-plugin-simple-import-sort',
+        'eslint-plugin-unused-imports',
+        'globals',
         'typescript-eslint',
     ],
     plugins: [
