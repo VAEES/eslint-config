@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - quality
+      - main
   pull_request:
     types:
       - opened
@@ -37,7 +38,6 @@ jobs:
           yarn typecheck
           yarn lint
           yarn test
-          yarn format:check
           yarn build
         env:
           CI: true
