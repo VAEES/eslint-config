@@ -41,16 +41,8 @@ jobs:
         env:
           CI: true
 
-      - name: Publish to npm
+      - name: Publish to npm registry
         if: ${{ steps.release-please.outputs.release_created }}
         run: |
-          yarn publish dist/*.tgz --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Upload release
-        run: |
-          gh release upload ${{ steps.release-please.outputs.tag_name}} *.tgz
-        if: ${{ steps.release-please.outputs.release_created }}
-        env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}
+          yarn config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
+          yarn publish
