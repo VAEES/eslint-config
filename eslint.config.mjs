@@ -7,7 +7,7 @@ import tsEslint from 'typescript-eslint';
 
 export default tsEslint.config(
     {
-        ignores: ['_dev', '.rollup.cache', '.vscode', 'dist', 'node_modules'],
+        ignores: ['.rollup.cache', '.vscode', 'dist', 'docs', 'node_modules']
     },
     eslint.configs.recommended,
     tsEslint.configs.recommendedTypeChecked,
@@ -15,26 +15,19 @@ export default tsEslint.config(
     stylistic.configs.customize({
         semi: true,
         indent: 4,
+        quotes: 'single',
+        commaDangle: 'only-multiline',
     }),
     {
         plugins: {
             'unused-imports': unusedImports,
             'simple-import-sort': simpleImportSort,
-            '@stylistic': stylistic,
         },
         rules: {
-            '@stylistic/array-bracket-newline': ['error', 'consistent'],
-            '@stylistic/array-element-newline': ['error', 'consistent'],
-            '@stylistic/arrow-parens': ['error', 'as-needed', { requireForBlockBody: true }],
-            '@stylistic/curly-newline': ['error', { minElements: 1 }],
-
             'unused-imports/no-unused-imports': 'warn',
-
             'simple-import-sort/imports': 'warn',
             'simple-import-sort/exports': 'warn',
-
             'no-console': 'error',
-            'curly': ['error', 'all'],
         },
     },
     {

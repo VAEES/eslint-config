@@ -5,16 +5,10 @@ import { codeStyle } from '../rules/code-style';
 import { imports } from '../rules/imports';
 
 /**
- * Tests config
+ * Recommended config
  */
-export const tests: ConfigArray = config(
+export const recommended: ConfigArray = config(
     base,
     imports,
-    codeStyle,
-    {
-        rules: {
-            'max-lines-per-function': 'off',
-            'no-console': 'off',
-        },
-    }
+    codeStyle
 );
