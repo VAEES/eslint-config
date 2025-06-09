@@ -1,18 +1,17 @@
 import tsEslint, { ConfigArray } from 'typescript-eslint';
 
-import { base } from './configs/base';
-import { tests } from './configs/tests';
+import { legacy, recommended, tests } from './configs';
 
 export interface Configs {
-    base: ConfigArray;
+    legacy: ConfigArray;
+    recommended: ConfigArray;
     tests: ConfigArray;
 }
-
-export type DefineConfig = typeof tsEslint.config;
-
 export const configs: Configs = {
-    base,
-    tests,
+    legacy,
+    recommended,
+    tests
 };
 
+export type DefineConfig = typeof tsEslint.config;
 export const defineConfig: DefineConfig = tsEslint.config;
