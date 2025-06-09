@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/VAEES/eslint-config/compare/v1.0.2...v1.0.3) (2025-06-09)
+
+
+### Bug Fixes
+
+* adjust release workflow ([2ef438e](https://github.com/VAEES/eslint-config/commit/2ef438ef468aab99d7b258353b8b30681745eeeb))
+
 ## [1.0.2](https://github.com/VAEES/eslint-config/compare/v1.0.1...v1.0.2) (2025-06-09)
 
 
