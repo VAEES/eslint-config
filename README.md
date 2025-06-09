@@ -1,4 +1,4 @@
-# eslint-configs
+# eslint-config
 
 This repository contains the ESLint opinionated configurations used by B2RISE projects.
 
@@ -36,3 +36,9 @@ export default defineConfig(
     }
 );
 ```
+
+## Available configs
+
+- `recommended`: Recommended rules
+- `legacy`: Old rules for backward compatibility
+- `tests`: Rules for test files
