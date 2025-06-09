@@ -43,6 +43,6 @@ jobs:
   
       - name: Publish to npm registry
         if: ${{ steps.release-please.outputs.release_created }}
-        run: yarn publish
+        run: yarn publish --access=public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
