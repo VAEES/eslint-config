@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.4](https://github.com/VAEES/eslint-config/compare/v1.0.3...v1.0.4) (2025-06-09)
+
+
+### Bug Fixes
+
+* adjust readme and trigger release ([d70a315](https://github.com/VAEES/eslint-config/commit/d70a31519ca7e4236f43382c7e4e436dc957e5e5))
+
 ## [1.0.3](https://github.com/VAEES/eslint-config/compare/v1.0.2...v1.0.3) (2025-06-09)
 
 
