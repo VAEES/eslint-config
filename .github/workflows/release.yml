@@ -28,21 +28,25 @@ jobs:
         if: ${{ steps.release-please.outputs.release_created }}
         uses: actions/setup-node@v4
         with:
+          registry-url: https://registry.npmjs.org
           node-version-file: .nvmrc
           cache: 'yarn'
           cache-dependency-path: yarn.lock
 
-      - name: Build and pack
+      - name: Build
         if: ${{ steps.release-please.outputs.release_created }}
         run: |
           yarn
           yarn build
-          yarn pack
         env:
           CI: true
 
+      - name: Set version to release tag
+        if: ${{ steps.release-please.outputs.release_created }}
+        run: npm version --allow-same-version --no-commit-hooks --no-git-tag-version from-git
+  
       - name: Publish to npm registry
         if: ${{ steps.release-please.outputs.release_created }}
-        run: |
-          yarn config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
-          yarn publish
+        run: yarn npm publish
+        env:
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
