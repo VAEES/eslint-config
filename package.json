@@ -1,6 +1,6 @@
 {
     "name": "@b2rise/eslint-config",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "author": "B2Rise",
     "license": "MIT",
     "description": "A standardized set of eslint shareable configs",
