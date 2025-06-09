@@ -40,13 +40,9 @@ jobs:
           yarn build
         env:
           CI: true
-
-      - name: Set version to release tag
-        if: ${{ steps.release-please.outputs.release_created }}
-        run: npm version --allow-same-version --no-commit-hooks --no-git-tag-version from-git
   
       - name: Publish to npm registry
         if: ${{ steps.release-please.outputs.release_created }}
-        run: yarn npm publish
+        run: yarn publish
         env:
-          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
