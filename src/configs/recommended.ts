@@ -10,5 +10,12 @@ import { imports } from '../rules/imports';
 export const recommended: ConfigArray = config(
     base,
     imports,
-    codeStyle
+    codeStyle,
+    {
+        rules: {
+            'class-methods-use-this': 'error',
+            '@typescript-eslint/explicit-member-accessibility': 'error',
+            '@typescript-eslint/explicit-function-return-type': 'error'
+        }
+    }
 );
