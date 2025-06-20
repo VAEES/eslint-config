@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.0](https://github.com/VAEES/eslint-config/compare/v1.0.4...v1.1.0) (2025-06-20)
+
+
+### Features
+
+* add class methods rules in recommended set ([cf0466c](https://github.com/VAEES/eslint-config/commit/cf0466ce7a98945c2472cd87679ef96f1024ffbd))
+* new recommended rules ([#11](https://github.com/VAEES/eslint-config/issues/11)) ([33b7fe2](https://github.com/VAEES/eslint-config/commit/33b7fe20d23d73af84e42643ff399a7c01a29e85))
+
 ## [1.0.4](https://github.com/VAEES/eslint-config/compare/v1.0.3...v1.0.4) (2025-06-09)
 
 
