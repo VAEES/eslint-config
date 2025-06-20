@@ -18,21 +18,23 @@ First, create an `eslint.config.mjs` file in the root of your project importing 
 import { defineConfig, configs } from '@b2rise/eslint-config';
 
 export default defineConfig(
-    { ignores: [ 'dist'] },
+    { 
+        ignores: ['dist'],
+    },
+    {
+        languageOptions: {
+            parserOptions: {
+                project: ['./tsconfig.json'],
+            }
+        }
+    },
     {
         files: ['src/**/*.ts'],
         extends: [configs.base],
     },
     {
-        files: ['src/**/*.test.ts'],
+        files: ['src/**/*.test.ts', 'tests/**/*.ts'],
         extends: [configs.tests],
-    },
-    {
-        languageOptions: {
-            parserOptions: {
-                project: ['./tsconfig.json']
-            }
-        }
     }
 );
 ```

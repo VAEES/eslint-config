@@ -29,6 +29,7 @@ export default defineConfig({
         'eslint-plugin-simple-import-sort',
         'eslint-plugin-unused-imports',
         'globals',
+        'prettier',
         'typescript-eslint',
     ],
     plugins: [
